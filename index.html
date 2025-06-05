@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body{
+            background-color:rgb(93, 251, 214);
+            
+
+        }
+        div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap:10px;
+            background-color: aliceblue;
+            width: 80vw;
+            height:10vh;
+            margin:auto;
+            border-radius: 20px;;
+            overflow: hidden;
+        }
+        section{
+            position: absolute;
+            left:50%;
+            top:50%;
+            transform:translate(-50%,-50%);
+            text-align: center;
+            width:100vw;
+            height: 100vh;
+            
+        }
+        .h{
+            font-size:120px;
+            font-family: cursive;
+        }
+        p{
+            font-size: 80px;
+            font-family: cursive;
+        }
+        #pass{
+            width:90%;
+            height:98%;
+            margin:2px;
+            font-size: 50px;
+            font-family: cursive;
+            border-radius: 20px;
+            border:transparent;
+            text-align: center;
+        }
+        img{
+            margin:10px;
+        }
+        button{
+            width:300px;
+            height:100px;
+            margin:20px;
+            border-radius:30px;
+            font-size:60px;
+            background-color: rgb(12, 85, 12);
+            color:aliceblue;
+            box-shadow: 0px 0px 20px 5px black;
+        }
+    </style>
+    <section><p class="h">Password Generator</p>
+        <p>Generate any random password</p>
+        <div>
+            <input type="text" id="pass" >
+            <img onclick="copy()" src="copied-icon.png" id="copy" width="80px">
+        </div>
+        <button onclick="generate()">Generate</button>
+        <button onclick="reset()">Reset</button>
+        <button onclick="special()">Special </button>
+    </section>
+    <script>
+        const passwordbox=document.getElementById("pass");
+        const length=8;
+        const upper="QWERTYUIOPASDFGHJKLZXCVBNM";
+        const lower="qwertyuiopasdfghjklzxcvbnm";
+        const number="0123456789";
+        const symbol="@#$%&_";
+        
+        const allchars = upper + lower + symbol + number;
+        function generate() {
+            let password="";
+            password += upper[Math.floor(Math.random() * upper.length)];
+            password += lower[Math.floor(Math.random() * lower.length)];
+            password += symbol[Math.floor(Math.random() * symbol.length)];
+            password += number[Math.floor(Math.random() * number.length)];
+            while(length > password.length){
+            password += allchars[Math.floor(Math.random() * allchars.length)];
+            }
+            passwordbox.value=password;
+        }
+        function copy(){
+            passwordbox.select();
+            document.execCommand("copy");
+        }
+        function special(){
+            passwordbox.value="TATA BYE BYE...";
+        }
+        function reset(){
+            passwordbox.value="";
+        }
+    </script>
+</body>
+</html>
